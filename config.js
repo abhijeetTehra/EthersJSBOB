@@ -1,9 +1,11 @@
 require("dotenv").config();
 const { ethers } = require("ethers");
 
+const privateKey = process.argv[2]; // Wallet private key
+const infuraProjectID = process.argv[3];
+
 // Load variables from .env
-const provider = new ethers.providers.JsonRpcProvider(`https://sepolia.infura.io/v3/${process.env.INFURA_PROJECT_ID}`);
-const privateKey = process.env.PRIVATE_KEY; // Wallet private key
+const provider = new ethers.providers.JsonRpcProvider(`https://sepolia.infura.io/v3/${infuraProjectID}`);
 const wallet = new ethers.Wallet(privateKey, provider);
 
 const erc20Abi = [
