@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Access script arguments using $1, $2, $3, etc.
-privateKey=$1
-infuraProjectId=$2
-tokenAddress=$3
+# privateKey=$1
+# infuraProjectId=$2
+# tokenAddress=$3
 # recipientAddress=$4
 
 # Optionally, show all arguments
@@ -11,7 +11,7 @@ tokenAddress=$3
 
 # Run your node script
 npm install > /dev/null 2>&1
-output=$(node getBalance.js $privateKey $infuraProjectId $tokenAddress)
+output=$(node getBalance.js '$privateKey' '$infuraProjectId' '$tokenAddress')
 echo $output
 # cat output.log
 # node transferTokens.js "$1" "$2" "$3" "$4"
