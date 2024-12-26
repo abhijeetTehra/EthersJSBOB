@@ -3,6 +3,7 @@ const { ethers } = require("ethers");
 
 const privateKey = process.argv[2]; // Wallet private key
 const infuraProjectID = process.argv[3];
+const tokenAddress = process.argv[4]; // ERC20 token contract address
 
 // Load variables from .env
 const provider = new ethers.providers.JsonRpcProvider(`https://sepolia.infura.io/v3/${infuraProjectID}`);
@@ -14,7 +15,6 @@ const erc20Abi = [
   "function transfer(address to, uint256 amount) returns (bool)",
 ];
 
-const tokenAddress = process.env.TOKEN_ADDRESS; // ERC20 token contract address
 
 module.exports = {
   provider,
