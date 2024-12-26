@@ -9,21 +9,26 @@ async function main() {
   const myAddress = wallet.address; // Your wallet address
 
   // Check balance
-  const balance = await tokenContract.balanceOf(myAddress);// you can use any address
-  console.log(`Your balance: ${ethers.utils.formatUnits(balance, 18)} tokens`);
+  const checkBalance = await tokenContract.balanceOf(myAddress);// you can use any address
+  const balance = ethers.utils.formatUnits(checkBalance, 18)
 
   // Transfer tokens
   const amount = ethers.utils.parseUnits(transferAmount, 18); // Replace with the token amount to transfer
+  console.log(balance, amount);
+  if(amount>balance){
+    console.error('Error: Amount Asked is more than balance Amount:'+amount+" Balance:"+balance);
+    return;
+  }
 
-  console.log(`Transferring ${ethers.utils.formatUnits(amount, 18)} tokens to ${recipient}...`);
+//   console.log(`Transferring ${ethers.utils.formatUnits(amount, 18)} tokens to ${recipient}...`);
   
   const tx = await tokenContract.transfer(recipient, amount);
-  console.log("Transaction sent. Waiting for confirmation...");
+//   console.log("Transaction sent. Waiting for confirmation...");
   
   const receipt = await tx.wait();
-  console.log("Transaction confirmed:", receipt.transactionHash);
+  console.log(receipt.transactionHash);
 }
 
 main().catch((error) => {
-  console.error("Error:", error);
+  console.error("Error:", error.reason);
 });
