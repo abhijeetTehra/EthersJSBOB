@@ -7,7 +7,8 @@ async function main() {
 
   // Check balance
   const balance = await tokenContract.balanceOf(myAddress);// you can use any address
-  console.log(`Your balance: ${ethers.utils.formatUnits(balance, 18)} tokens`);
+  console.log(`Your balance: ${balance} tokens`);
+  console.log(`Your balance Formatted: ${ethers.utils.formatUnits(balance, 18)} tokens`);
 }
 
 main().catch((error) => {
